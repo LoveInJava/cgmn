@@ -65,7 +65,7 @@ public class WorkingDaysRange {
 
 
         // Step 1: Find the 12th working day from start (Oct 1)
-        LocalDate twelfthFromStart = addWorkingDays(startDate, MANDATORY_DAYS);
+        LocalDate twelfthFromStart = addWorkingDays(startDate, MANDATORY_DAYS-listCurrentLeaves.size());
 
         // Step 2: Find last day of next month (Nov)
         LocalDate lastDayNextMonth = startDate
@@ -73,7 +73,7 @@ public class WorkingDaysRange {
                 .withDayOfMonth(startDate.plusMonths(1).lengthOfMonth());
 
         // Step 3: Find 12th working day before last day of next month
-        LocalDate twelfthFromEnd = subtractWorkingDays(lastDayNextMonth, MANDATORY_DAYS);
+        LocalDate twelfthFromEnd = subtractWorkingDays(lastDayNextMonth, MANDATORY_DAYS-listNextLeaves.size());
 
         // Print results
         System.out.println("Start Date '" + formattedDate + "' : " + startDate);
