@@ -3,7 +3,7 @@ package com.pre.core.exception;
 public class TryInFinally {
     public static void main(String[] args) {
         try {
-            System.out.println("Main try block");
+            System.out.println("com.pre.cg.ev1.com.pre.cg.ev2.Main try block");
         } catch (Exception e) {
             System.out.println("Caught in main catch");
         } finally {
