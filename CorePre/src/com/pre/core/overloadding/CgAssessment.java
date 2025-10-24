@@ -25,4 +25,9 @@ public class CgAssessment {
 
         System.out.println("int a = " + a + ", b = " + b);
     }
+
+    public void m1(Object objA, Object objB){
+
+        System.out.println("objA = " + objA + ", objB = " + objB);
+    }
 }

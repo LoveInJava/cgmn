@@ -1,6 +1,7 @@
 package com.abha.prep.controller;
 
 import com.abha.prep.dto.User;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +44,7 @@ public class TestController {
             @PathVariable("date")
             @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "Date must be in YYYY-MM-DD format")
             String date,
-            @RequestBody User user
+            @Validated @RequestBody User user
     ){
         return "Hello Welcome "+date;
     }
