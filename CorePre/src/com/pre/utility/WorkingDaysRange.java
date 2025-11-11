@@ -3,15 +3,12 @@ package com.pre.utility;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 public class WorkingDaysRange {
-    static List<LocalDate> listHolidays = null;
-    static List<LocalDate> listCurrentLeaves = null;
-    static List<LocalDate> listNextLeaves = null;
+    static List<LocalDate> listHolidays = Collections.emptyList();
+    static List<LocalDate> listCurrentLeaves = Collections.emptyList();
+    static List<LocalDate> listNextLeaves = Collections.emptyList();
     final static int MANDATORY_DAYS = 12;
 
     public static void main(String[] args) {
@@ -23,34 +20,51 @@ public class WorkingDaysRange {
         String fromDate = scanner.next();
         scanner.nextLine();
 
+        System.out.println("Number of Leaves in current Month : ");
+        String numberOfLeaves = scanner.next();
+        scanner.nextLine();
         DateTimeFormatter holidayFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
 
-        System.out.println("Date of Leaves in current Month separated by ',' : ");
-        String currentMonthLeaves = scanner.nextLine(); // Use nextLine to read full line
-        String[] currentMonthAllLeaves = currentMonthLeaves.split(",");
-        listCurrentLeaves = Arrays.stream(currentMonthAllLeaves)
-                .filter(str -> !str.isEmpty())
-                .map(str -> LocalDate.parse(str.trim(), holidayFormatter))
-                .toList();
+        if(!"0".equals(numberOfLeaves)) {
 
+            System.out.println("Date of Leaves in current Month separated by ',' : ");
+            String currentMonthLeaves = scanner.nextLine(); // Use nextLine to read full line
+            String[] currentMonthAllLeaves = currentMonthLeaves.split(",");
+            listCurrentLeaves = Arrays.stream(currentMonthAllLeaves)
+                    .filter(str -> !str.isEmpty())
+                    .map(str -> LocalDate.parse(str.trim(), holidayFormatter))
+                    .toList();
 
-        System.out.println("Date for Holidays in both Month separated by ',' : ");
-        String monthHolidays = scanner.nextLine(); // Use nextLine to read full line
-        String[] holidays = monthHolidays.split(",");
-        listHolidays = Arrays.stream(holidays)
-                .filter(str -> !str.isEmpty())
-                .map(str -> LocalDate.parse(str.trim(), holidayFormatter))
-                .toList();
+        }
 
+        System.out.println("Number of Holidays in both Month : ");
+        String numberOfHolidays = scanner.next();
+        scanner.nextLine();
 
-        System.out.println("Date of Leaves in Next Month separated by ',' : ");
-        String nextMonthLeaves = scanner.nextLine(); // Use nextLine to read full line
-        String[] nextMonthAllLeaves = nextMonthLeaves.split(",");
-        listNextLeaves = Arrays.stream(nextMonthAllLeaves)
-                .filter(str -> !str.isEmpty())
-                .map(str -> LocalDate.parse(str.trim(), holidayFormatter))
-                .toList();
+        if(!"0".equals(numberOfHolidays)) {
+            System.out.println("Date for Holidays in both Month separated by ',' : ");
+            String monthHolidays = scanner.nextLine(); // Use nextLine to read full line
+            String[] holidays = monthHolidays.split(",");
+            listHolidays = Arrays.stream(holidays)
+                    .filter(str -> !str.isEmpty())
+                    .map(str -> LocalDate.parse(str.trim(), holidayFormatter))
+                    .toList();
 
+        }
+
+        System.out.println("Number of Leaves in Next Month : ");
+        String numberOfLeavesNextMonth = scanner.next();
+        scanner.nextLine();
+
+        if(!"0".equals(numberOfLeavesNextMonth)) {
+            System.out.println("Date of Leaves in Next Month separated by ',' : ");
+            String nextMonthLeaves = scanner.nextLine(); // Use nextLine to read full line
+            String[] nextMonthAllLeaves = nextMonthLeaves.split(",");
+            listNextLeaves = Arrays.stream(nextMonthAllLeaves)
+                    .filter(str -> !str.isEmpty())
+                    .map(str -> LocalDate.parse(str.trim(), holidayFormatter))
+                    .toList();
+        }
         DateTimeFormatter inputDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.ENGLISH);
         DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("MMM", Locale.ENGLISH);
@@ -129,7 +143,7 @@ public class WorkingDaysRange {
         }
 
         boolean isNextMonthApplyLeave = listNextLeaves.stream().anyMatch(date1 -> date1.isEqual(date));
-        if(isNextMonthApplyLeave&& "NEXT".equals(comeFrom)){
+        if(isNextMonthApplyLeave && "NEXT".equals(comeFrom)){
             return false;
         }
         boolean isHoliday = listHolidays.stream().anyMatch(date1 -> date1.isEqual(date));

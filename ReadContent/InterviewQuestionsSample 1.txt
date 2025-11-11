@@ -1,0 +1,601 @@
+////////////////////////////////////////////////////////////
+
+import java.util.concurrent.ConcurrentHashMap;
+
+public class WordCounter {
+ 
+    public static void main(String[] args) throws InterruptedException {
+ 
+        ConcurrentHashMap<String, Integer> wordMap = new ConcurrentHashMap<>();
+
+        String[] words = {"apple", "banana", "apple", "orange", "banana", "apple"};
+
+        Runnable task = () -> {
+ 
+            for (String word : words) {
+ 
+                wordMap.merge(word, 1, Integer::sum);
+ 
+            }
+ 
+        };
+
+        Thread t1 = new Thread(task);
+ 
+        Thread t2 = new Thread(task);
+
+        t1.start();
+ 
+        t2.start();
+
+        t1.join();
+ 
+        t2.join();
+
+        System.out.println("Word Frequencies: " + wordMap);
+ 
+    }
+ 
+}
+
+ o/p for this
+ 
+Write an SQL query to find departments that have more than 5 employees
+
+ 
+
+
+////////////////////////////////////////////////////
+Audi 
+Questions are:
+list of string , get duplicates, get unique 
+find starts with A word from list
+bean and scope 
+@transactional 
+communication of microservices 
+copilot use right or wroong
+gropingby salary print name of employees java8
+sort the list of num
+
+///////////////////////////////////////////////////////////////////////////////////
+*************************
+L1-Fin Project
+*************************
+java 8 code
+
+I/P - 1,1,2,3,4,5,6,6
+
+output: 2,3,4,5
+
+List<String> Str = Arrays.asList("Apple", "Bat", "Orange", "Avacado", "Banana", "Aeroplane");
+
+sort and print according to length in desc.
+ 
+what is @Async explain why we use it
+
+what is executor framework explain available methods and classes
+
+Functional interface
+
+map vs flatmap
+
+terminal vs intermediate operations with example
+
+name some collector methods
+
+write singleton class
+
+is it medatory to write @FuctionalInterface on Functional interface
+
+Synchrounous vs async communication
+
+how and why we use Rate limiting
+
+explain Circuit breaker states
+
+which method you have used to call external API (if using RestTemplate)
+java 17 features (switch case changes, record classes, instance of operator)
+ 
+
+////////////////////////////////////////////////
+------------L2 Charter--------------
+Java Basics ,8 and 17 features
+Threads, Exceutor service and its methods
+Java 8-explain all features
+Spring 3.0 changes
+spring MVC vs BOOT
+micro service- Circuit breaker; tools; services
+How you worked on migrating to micro services
+How to resolve prod issues- delay in response in API
+Debugging steps
+Agile questions, planning, retro etc
+
+//////////////////////////////////////////////////
+
+Interview questions:-
+What is Object Class?
+What is classLoader?
+Solid Principles.
+few Questions on String input and output 
+few Questions on Exception code and what will be output?
+write code for Singleton Class
+Which are the methods of Object class?
+What is Metaspace?
+//////////////////////////////////////////////////////
+Sygenta - L1
+ 
+Internal working of HashMap.- Detailed Discussion
+HashMap vs concurrenthashMap
+Create a Employee class and override equals and hashcode method.
+can hashcode be same for 2 objects
+Try with Resources.
+stream api for 3rd highest salary
+stream api for 1st and 2nd highest salary in each department.
+Immutable class implementation
+Factory Design Pattern vs Abstract Design Pattern
+@autoconfiguration
+Spring Security, How to implement and enable it.
+ASYNC vs SYNC communication. How to implement it.
+What is KAFKA how to use it and send messages.
+SAGA design pattern ways. which pattern to use when.
+
+////////////////////////////////////////////////
+BNL 
+Plain Text
+public static void main(String[] args) {
+    String str = "mumbai is a big city and it is capital";
+    String inintcap = Arrays.stream(str.split(" "))
+            .map(word -> word.isEmpty() ? word : Character.toUpperCase(word.charAt(0)) + word.substring(1))
+            .collect(Collectors.joining(" "));
+    System.out.println("Init capital::" + inintcap);
+ 
+ 
+initial character in uppercase of each word in sentance
+ 
+SQL Query to get 2nd highest salary department wis
+ 
+difference between @primary & qualifier
+ 
+difference between service,controller,repository annotations
+ 
+what happen when we shuffle this annotations
+ what if we dont use concurrenthashmap and make hashmap syncronised
+difference between wait and sleep
+what are the challenges in microservice you faced
+circular dependency and how to resolve it 
+//////////////////////////////////////////////////
+
+
+
+Meeting questions
+1. wrapper class
+2. autoboxing
+3. method overloading
+4. can we achive method overloading by changing return type of method
+5. parallel stream and sequential stream
+6. functional interface
+
+7. list of city group by its first character 
+list ={nashik,pune,mumbai,nagpur,agra };
+Map<Character, List<String>> cityNames = list.stream().Collect(collectors.groupingBy(s -> s.startsWith("N"));
+
+8. How to declare multiple exception in catch block
+catch (IOException | NumberFormatException e) {
+    System.out.println("Exception caught: " + e.getMessage());}
+
+9. @Configuration uses
+10. instead of @con @ser @restcon @repo can we write @component
+11. Exception occur in 3rd microservice which design pattern we will use
+12. exception propogation
+13. Exception handling
+14. If we are not handling any exception in method then how to behave (JVM handles it)
+15. Given a List of Department objects, where each Department contains a List of Employee objects, and each Employee has a List of Skill objects, how would you use streams to get a distinct list of all skills across all employees in all departments? 
+   class Skill { String name; }
+    class Employee { List<Skill> skills; }
+    class Department { List<Employee> employees; }
+
+16.  Find all pairs of elements from an array whose sum is equal to given number
+	array[]={ -40, -5, 1, 3, 6, 7, 8, 20 };
+	Pair of elements whose sum is equal to 15 :  7, 8 and -5, 20
+	
+
+--------------------------------------------------------------------------------------------------------------------------------
+Client Comcast
+ 
+Question 1:
+List<Employee> employees = Arrays.asList(
+   new Employee(1, "Alice", "Engineering", 120000),
+   new Employee(2, "Bob", "HR", 80000),
+   new Employee(3, "Charlie", "Engineering", 110000),
+   new Employee(4, "David", "Engineering", 115000),
+   new Employee(5, "Eve", "HR", 85000),
+   new Employee(6, "Frank", "Sales", 90000)
+);
+public class Employee {
+   private int id;
+   private String name;
+   private String department;
+   private double salary;
+}
+ 
+Group employees by department, but only include departments that have 2 or more employees.
+
+Question 2:
+Modify the above solution to find deparments with 2 or
+more employees and produce a list of string.
+["Engineering: Alice,Charlie,David", "HR: Bob,Eve"]
+------------------------------------------------------------------------------------------------------------------------------
+
+
+VodaFone 
+ 
+How to achieve this scenario, if API taking too much time(30 Min) to respond, how i can handle this scenario so that it will be user friendly also, solution should be API implementation perspective only.
+ 
+How 4-5 Services can be listened to only one port in terms of Microservices Architecture.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+charter Quetion
+1) Explain last project architect and project setup.
+2) what changes i did in the project development.
+3) How you promote your code till production.
+4) How to implement async communication.
+5) how do handle service failures in microservice without using circuit Breaker design pattern
+6) steps to accept XML request from UI front-end
+7) implementation changes about the project
+8) about saga design pattern
+9) about security JWT in microservice
+10) inter service communication between microservice
+11) How to whitelist request
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+Penske Account - Interview Questions for L1 Round
+--------------------------------------------
+1.Introduce yourself brief?
+2.Roles and responsibilities in previous project?
+3.explain Java8 features? 
+4.Given numbers 4,7,8,2,4,1,5 find highest 3rd number using stream?
+5.given list of string "potato:veg" , "mango:fruits","banana:fruits"
+use stream print the elements divided into two categories fruits and vegs
+5.How Microservices communicate with each other?
+6.Do you worked on Spring security?
+7.How you migrate Rest API.
+8.explain microservices design pattern which you word on?
+9.Do you worked on Docker & Kubernetes?
+10.How would you implement caching in a high-traffic Java application?
+11.How have you integrated Kafka with Spring Boot?
+12.How do you handle serialization and deserialization of custom Java objects in Kafka?
+13.Tell me about a time you resolved a production issue under pressure.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+SCB client round interview questions :-
+ 
+Q1. End to End structure creation of an microservices application verbally(in springboot).
+Q2. DSA(stack and queue) (do not use collections, should be POJO)
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+HSBC Second Round Client Interview Question
+Brief about yourself
+Project Flow
+Map vs FlatMap
+ParallerlStream
+Write a code to find employee who has same salary
+How you make pojo for above employee class
+How you implement async call
+How microservices communicate
+How you commit and deploy your app.
+GitRebase command
+How to handle Null Pointer Exception
+Which are the Java Version you have worked on.
+Various types of stream Objects
+
+1. write a code to access the eligibility criteria for credit card when you supply the name, age and salary of the customer. write the controller, service class logic also?
+2. how can you improve the performance of the above code using threads? how you use asynchronous communication?
+3. write a code to find the sum of the even numbers present in the list using java8?
+4. write a code for entity where employee having multiple departments associated with it? modify the code for the key is a composite key with empId and empName?
+5. write the code to inject the dependency instead of using @Autowired ?
+6. when multiple cloud schedular was scheduled at the same time to access the same method. how it will behave. will it access the same thread or create new thread?
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+SBI Card: singleton class - program, with thread safety 
+create bean in spring - how many ways can we create
+difference between get() and load()
+how to find 2nd highest salary in SQL
+"H$1e@2l%3l-+4o5_ w67o(8r)l#d9" | find the string
+ they covered all topics like OOps , SpringBoot, Microservices, CICD,
+anagram program - check if words are anagram & form other anagram
+ 
+SQL -> // employee ( id, name, dept, salary, age, gender)
+
+// Dept wise employee count
+// 5th highest salary
+ 
+ 
+java round 1 internal
+ 
+1 -> int[] arr = new int[] {1,-2,3,2,10,5,8,-9};
+ 
+2 -> List<List<?>> lists = Arrays.asList(
+                Arrays.asList(1, 1),
+                Arrays.asList("A","B"),
+                Arrays.asList(1.1f,1.2f)
+        );
+ 
+3 -> // first non repeating occurrence of a character in a string
+		String text ="Nisharth";
+ 
+Internal 2nd round 
+ ("apple bannana apple", "banana orange banana apple", "orange apple banana"
+apple = 4 banana = 4 orange = 2, only top 3 based on frequency in descending order.
+2. Anagram 
+
+ 
+ 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Hibernate
+Multithreading
+JPA
+
+Can we overload run method and what if we do not override run method
+can we override start method
+simgleton 
+multiple tasking in parallel
+thread pool
+what it is the criteria to enable the thread pool
+@namedQuery
+what type annotation we will get from hibernate and jpa(from both separately)
+how many types of collections are there in hibernate
+how to optimize performance of hibernate application
+-----------------------------------------------------------------------------------------
+springMVC
+springboot 
+microservice
+------------------------------------------------------------------------------------------------------------------------
+
+sonarqube uses
+diff between error and bug
+how you monitor sonar qube performance
+role of duplications in sonarqube
+how to integrate sonarqube with maven
+code coverage and test coverage
+how you wll secure sonarqube server and secure code analysis data
+how you will generate reports in sonarqube
+steps for sonarqube with jenkins
+how many languages supported by sonarqube
+
+Kubernetes
+what is kubernetes
+how to debug kubernetes pods 
+role of load balancer in kubernetes
+architecture of kubernetes
+interset pod and intraset pod communication
+how kubernetes handle node failure
+advantages of using kubernetes
+
+-------------------------------------------------------------------------------------------------------------------------------
+MBRDI account
+
+1)Explain hash map and hash table
+2)serialization
+3)how do we communicate between two services
+4)microservices vs monolithic
+5)WAP TO find average of even no in java 8
+6)wap to print 'z' from given string in java 8
+8)java solid principle
+9)component
+10)abstract methods
+11)method overridding and overloading
+
+======================================================================================================================================
+Docker and jenkins
+What is docker
+docker file
+how to stop docker container
+how to check logs of docker container
+docker commands that list all the docker container
+diff btewen docker and kubernetes
+
+how to create a docker file for microservice
+
+from jdkversion //open jdk
+workdir dir
+copy file1 file2
+expose serverport //8080
+entrypoint "java", "-jar", "app.jar"
+=================================================================================================================================
+what is jenkins and jenkins file
+how to secure credential of jenkins
+how to access github files in kenkins
+how to implement security base in jenkins using role base access control
+how to integrate jenkins with proper code quality like sonarqube
+what is artifacts in jenkins
+
+==================================================================================================================================
+HSBC client 
+Java 8 features, 
+stream api, 
+print duplicate characters using stream, 
+circuit breaker design pattern, 
+api gateway, 
+solid principles, 
+saga design pattern
+====================================================================================================================================
+String questions
+48. CI CD and Jenkins(Deployment)
+48. How to check production logs
+50. Sonarqube
+
+======================================================================================================================================
+HSBC Second Round Client Interview Question
+Brief about yourself
+Project Flow
+Map vs FlatMap
+ParallerlStream
+Write a code to find employee who has same salary
+How you make pojo for above employee class
+How you implement async call
+How microservices communicate
+How you commit and deploy your app.
+GitRebase command
+How to handle Null Pointer Exception
+Which are the Java Version you have worked on.
+Various types of stream Objects
+======================================================================================================================================
+== and .equals() 
+Predicate Interface
+You're facing frequent OutOfMemoryError in your app. How would you troubleshoot it?
+ArrayList and Linked list
+LinkedHashMap preserve insertion order?
+Thread and process
+Coordinate two threads to print alternating letters (e.g., A, B, A, B...).
+Wait() and Sleep() methods
+What is synchronization
+=========================================================================================================================================================
+adaptor pattern
+proximated design pattern
+saga design pattern
+circuit design pattern 
+
+Write a  script that removes a specified word from a given text. Return the new string.
+("Exercises Practice Solution", " Solution") -> "Exercises Practice"
+("Red Green Blue", "Green") -> "Red Blue"
+(" Number Exercises”, “”) -> "Number Exercises"
+
+Write a  script to create a new string repeating every character twice of a given string.
+   Sample Output:
+   The given string is: welcome
+   The new string is: wweellccoommee
+   
+Given a string of even length, return the first half. So the string "WooHoo" yields "Woo".
+firstHalf("WooHoo") → "Woo"
+firstHalf("HelloThere") → "Hello"
+firstHalf("abcdef") → "abc"   
+
+=====================================================================================================================================================
+Encapsulation Question 1. ATMSystem
+Problem: Design an ATM class with private fields pin, balance, and attempts. Implement methods to withdraw, deposit, and change PIN. Lock the account after 3 incorrect PIN attempts.
+Input:
+ATM atm = new ATM(1234, 5000); 
+atm.withdraw(1234, 1000); 
+atm.changePIN(1234, 5678); 
+atm.withdraw(1111, 2000); 
+atm.withdraw(1111, 2000); 
+atm.withdraw(1111, 2000); 
+atm.withdraw(1234, 500); 
+Output:
+Withdrawn: 1000 
+PIN Changed 
+Incorrect PIN 
+Account Locked
+
+====================================================================================================================================================
+Inheritance Question 2: EmployeeManagement
+Problem: Design a Person superclass with subclasses Employee and Manager. The Manager class should have an additional field teamSize. Calculate bonus based on role and team size.
+Input:
+Manager m = new Manager("Alice", 45000, 5); 
+Employee e = new Employee("Bob", 30000); 
+System.out.println(m.calculateBonus()); 
+System.out.println(e.calculateBonus()); 
+Output:
+Manager Bonus: 7500 
+Employee Bonus: 3000 
+
+========================================================================================================================================================
+Polymorphism Question 3. VehiclePolymorphism
+Problem: Create a superclass Vehicle with a method start(). Implement a subclass Car that overrides the start() method.
+Input:
+Vehicle vehicle = new Car().
+vehicle.start();
+Output:
+Car is starting.
+
+=====================================================================================================================================================
+Abstraction - Question 4: Animal Abstraction
+Problem: Create an abstract class Animal with an abstract method makeSound(). Implement subclasses Dog and Cat that override the makeSound() method.
+Input:
+Animal animal1 = new Dog();
+Animal animal2 = new Cat();
+animal1.makeSound();
+animal2.makeSound();
+Output:
+Barking.
+Meowing.
+
+=====================================================================================================================================================
+Constructor - 5. Constructor Overloading
+Problem: Create a class Book with two constructors: one accepts title and author, and the other accepts title, author, and price. Print the details of the book.
+Input:
+Book book1 = new Book("Java Basics", "John Doe");
+Book book2 = new Book("Advanced Java", "Jane Doe", 49.99);
+Output:
+Title: Java Basics, Author: John Doe, Price: Not Available
+Title: Advanced Java, Author: Jane Doe, Price: 49.99
+
+=====================================================================================================================================================
+Interface - 6. Orderable Interface
+Problem: Create an interface Orderable with a method placeOrder(). Implement it in the classes Pizza and Burger.
+Input:
+Orderable food1 = new Pizza();
+Orderable food2 = new Burger();
+food1.placeOrder();
+food2.placeOrder();
+Output:
+Pizza order placed.
+Burger order placed.
+
+=========================================================================================================================================
+JWT 
+spring security 
+Junit and sql
+
+=================================================
+hashmap and hashtable diff
+sterotype annotation in java
+api flow
+scope in spring boot
+application file
+database connectivity 
+==========================================================================================================================================
+spirng mvc and spring boot diff
+what steps to do when deadlock in multithreading happen
+fail safe fail fast
+multithreading 
+how to get nth highest salary usin streams
+microservices confguration
+code output
+How to call a service batch A which has java 7 version and dependencies and another service b has java 8 how they will comunicate
+
+===============
+Factory design pattern
+Implement a Car class with a clone() method to create copies of car objects with the same attributes.
+Prototype design pattern
+oberver design pattern
+ Write a Java program to find the second largest element in an array using java8 features
+ In a class Shape, you have a method area(). If you create a subclass Circle and override area(), what will happen if you call area() on a Circle object using a Shape reference?
+ abstraction and encapsulation?
+ Write a program that uses a method reference to print each element in a list of strings.
+Create a Person class with a constructor that accepts name and age. Use a constructor reference to create a list of Person objects from a stream.
+String, StringBuilder, and StringBuffer?
+purpose of the synchronized keyword?
+fail-fast and fail-safe iterators?
+Create a program that uses a parallel stream to filter out negative numbers and print the remaining positive numbers.
+ How does Java handle multiple inheritance?
+ Write a program that creates an Optional object from a non-null string and prints its value using ifPresent().
+ for-each loop differ from a traditional for loop?
+ == and .equals()
+final, finally, and finalize?
+Create a stream from a list of strings and print only those strings that contain the letter "a".
+Use the map() function to convert a list of strings to uppercase and print the results.
+autoboxing and unboxing?
+default value of local variables?
+You have a class Person with a private field name. If you provide a public method setName() to modify name, what principle of OOP are you demonstrating?
+Create a lambda expression that takes a string and returns its length.
+Method reference
+ 
