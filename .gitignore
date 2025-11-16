@@ -1,0 +1,24 @@
+# Ignore all Maven target folders in all sub-projects
+**/target/
+
+# Ignore IntelliJ IDEA files
+.idea/
+*.iml
+
+# Ignore Eclipse files
+.project
+.classpath
+.settings/
+
+# Ignore logs
+**/*.log
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore build
+**/build/
+
+# Ignore node modules if any JS projects
+**/node_modules/
