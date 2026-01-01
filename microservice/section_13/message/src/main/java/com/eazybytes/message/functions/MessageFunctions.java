@@ -18,7 +18,7 @@ public class MessageFunctions {
 
         return (accountsMsgDto )-> {
 
-            log.info("Sending mail with the details", accountsMsgDto.toString());
+            log.info("Sending mail with the details: {}", accountsMsgDto.toString());
             return accountsMsgDto;
         };
     }
@@ -27,7 +27,7 @@ public class MessageFunctions {
 
         return (accountsMsgDto )-> {
 
-            log.info("Sending sms with the details", accountsMsgDto.toString());
+            log.info("Sending sms with the details : {}", accountsMsgDto.toString());
             return accountsMsgDto.accountNumber();
         };
     }
