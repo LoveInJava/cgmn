@@ -1,6 +1,6 @@
 services:
   configserver:
-    image: "aak5488/configserver:s12"
+    image: "aak5488/configserver:s13"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -15,7 +15,7 @@ services:
       service: microservice-base-config
 
   eurekaserver:
-    image: "aak5488/eurekaserver:s12"
+    image: "aak5488/eurekaserver:s13"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -33,7 +33,7 @@ services:
 
 
   accounts:
-    image: "aak5488/accounts:s12"
+    image: "aak5488/accounts:s13"
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -50,7 +50,7 @@ services:
       service: microservice-eureka-config
 
   loans:
-    image: "aak5488/loans:s12"
+    image: "aak5488/loans:s13"
     container_name: loans-ms
     ports:
       - "8090:8090"
@@ -67,7 +67,7 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: "aak5488/cards:s12"
+    image: "aak5488/cards:s13"
     container_name: cards-ms
     ports:
       - "9000:9000"
@@ -84,7 +84,7 @@ services:
       service: microservice-eureka-config
       
   gatewayserver:
-    image: "aak5488/gatewayserver:s12"
+    image: "aak5488/gatewayserver:s13"
     container_name: gatewayserver-ms
     ports:
       - "8072:8072"
