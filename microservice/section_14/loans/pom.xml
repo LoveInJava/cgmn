@@ -113,7 +113,7 @@
                 <version>3.4.2</version>
                 <configuration>
                     <to>
-                        <image>aak5488/${project.artifactId}:s13</image>
+                        <image>aak5488/${project.artifactId}:s14</image>
                     </to>
                 </configuration>
             </plugin>
