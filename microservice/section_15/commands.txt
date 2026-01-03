@@ -1,0 +1,11 @@
+ helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+ helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard
+ kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443
+ https://localhost:8443
+ 
+ PS C:\Users\Aasif\OneDrive\Desktop\K8s> kubectl apply -f dashboard-adminuser.yml
+serviceaccount/admin-user created
+PS C:\Users\Aasif\OneDrive\Desktop\K8s> New-Item dashboard-rolebinding.yml
+PS C:\Users\Aasif\OneDrive\Desktop\K8s> kubectl apply -f secret.yml
+
+ kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath="{.data.token}" | % { [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($_)) }
